@@ -15,7 +15,7 @@ int main() {
     mount("devtmpfs", "/dev", "devtmpfs", 0, NULL);
     printf("Done!\n");
 
-    char *python_args[] = {"/bin/python3", "/bin/init.py", NULL};
+    char *python_args[] = {"/bin/python3", "/sbin/init.py", NULL};
     extern char **environ;
 
     setenv("HOME", "/root", 1);
