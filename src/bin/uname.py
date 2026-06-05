@@ -1,5 +1,6 @@
 import platform
 import argparse
+import sys
 
 ending="\n"
 
@@ -13,7 +14,6 @@ def main():
         machineInfo()
         OSInfo()
         return
-
     if parsed.kernel_name:
         kernelName()
     if parsed.kernel_release:
@@ -22,6 +22,8 @@ def main():
         machineInfo()
     if parsed.operating_system:
         OSInfo()
+    if len(sys.argv) == 1:
+        kernelName()
     return
 
 def parseArgs():

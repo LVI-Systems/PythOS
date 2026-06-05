@@ -1,6 +1,6 @@
 def main():
-    esc = "\033"
-    print(f"{esc}[H{esc}[J")
-
+	escape = "\033"
+	print(f"{escape}[H{escape}[J")
+	
 if __name__ == "__main__":
-    main()
+	main()

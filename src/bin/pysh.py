@@ -7,9 +7,10 @@ import readline
 from pathlib import Path
 
 args = sys.argv[1:]
-os.environ["PATH"] = "/usr/bin:/bin"
+os.environ["PATH"] = "/usr/bin:/bin:/sbin"
 
 def main():
+    uInput = ""
     while True:
         try:
             HOME = os.environ.get("HOME")
@@ -39,6 +40,8 @@ def main():
                         continue
                     else:
                         os.chdir(targetPath)
+            elif uInput[0] == "exit":
+                sys.exit(1)
             else:
                 targetBin = uInput[0]
                 continueLoop = True
@@ -69,7 +72,7 @@ def main():
                                         subprocess.run([shebangPath, pyFullPath] + uInput[1:])
                                         continueLoop = False
                                 else:
-                                    subprocess.run(["/bin/python", pyFullPath] + uInput[1:])
+                                    subprocess.run(["/bin/python3", pyFullPath] + uInput[1:])
                                     continueLoop = False
                             else:
                                 if Path(uInput[0]).is_file():
@@ -89,6 +92,8 @@ def main():
                         break
                 if continueLoop:
                     print(f"{uInput[0]}: command not found")
+        except PermissionError:
+            print(f"pyshell: {uInput[0]}: Permission denied")
         except KeyboardInterrupt:
             print("")
             continue
@@ -96,5 +101,4 @@ def main():
 
 
 if __name__ == "__main__":
-    showInitMessage()
     main()
