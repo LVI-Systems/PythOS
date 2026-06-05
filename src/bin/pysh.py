@@ -80,7 +80,7 @@ def main():
                                         startBytes = f.read(2)
                                         if startBytes == b"#!":
                                             with open(uInput[0], "r") as file:
-                                                shebangPath = file.read().striplines()[0][2:].strip()
+                                                shebangPath = file.read().splitlines()[0][2:].strip()
                                                 subprocess.run([shebangPath, pyFullPath] + uInput[1:])
                                                 continueLoop = False
                                         elif uInput[0].endswith(".py"):
